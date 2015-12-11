@@ -16,7 +16,7 @@ class Genome:
 		"""
 		conflicts = 0
 		for i in range(self.numberN):
-			if conflict(i, self.chromosome[i]):
+			if self.conflict(i, self.chromosome[i]):
 				conflicts += 1
 		return conflicts
 
