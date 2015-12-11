@@ -1,13 +1,4 @@
-#!/usr/bin/env python
-#  
-# -*- coding: utf-8 -*-
+# file: __init__.py
 
-
-
-def main():
-	
-	return 0
-
-if __name__ == '__main__':
-	main()
-
+from population import *
+from genome import *
