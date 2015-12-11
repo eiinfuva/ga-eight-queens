@@ -45,7 +45,7 @@ class Genome:
 			Arguments:
 				genome2 (Genome): the other genome with we want to cross.
 		"""
-		crossPoint = randint(0, self.numberN)
+		crossPoint = randint(0, self.numberN - 1)
 		genome2.chromosome[crossPoint:], self.chromosome[crossPoint:] = \
 			self.chromosome[crossPoint:], genome2.chromosome[crossPoint:]
 		return (self, genome2)
@@ -53,6 +53,6 @@ class Genome:
 	def mutate(self):
 		""" Mutates a chromosome random position (or allele).
 		"""
-		index = randint(0, self.numberN)
-		newValue = randint(0, self.numberN)
+		index = randint(0, self.numberN - 1)
+		newValue = randint(0, self.numberN - 1)
 		self.chromosome[index] = newValue
