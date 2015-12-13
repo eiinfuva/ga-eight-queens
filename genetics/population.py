@@ -14,7 +14,6 @@ Authors:
 
 from random import randint, random
 
-
 class Population:
     """Implementation of GA population.
 
@@ -57,7 +56,7 @@ class Population:
         Returns:
             list: set of random generated fenotypes
         """
-        return [Genome(n, [randint(1, N) for _ in range(N)]) for _ in range(n)]
+        return [Genome([randint(1, N) for _ in range(N)]) for _ in range(n)]
 
     def evolve(self, max_generation, finish_condition=lambda x: False):
         """Evolution process of population.
@@ -110,8 +109,34 @@ class Population:
         Returns:
             Genome, Genome: two fenotypes selected from population.
         """
-        # TODO: selection by tournament and roulette
-        return self.generation.pop(0), self.generation.pop(0)
+        self.generation.sort(key=lambda gen: gen.calculateFitness())  # sorted by fitness
+
+        # tournament selection
+        fenotypes = []
+        for i in range(2):  # 2 parents
+            fenotypes.append(randint(0, self.fenotypes-1))  # get random index to fenotype
+        genome1 = self.generation.pop(min(fenotypes))   # extract the fenotype with best fitness
+
+        # roulette selection
+        totalFitness = 0.0
+        proportions = []
+        for fenotype in self.generation:
+            fitness = 1.0 / fenotype.calculateFitness()     # fitness inverse
+            totalFitness += fitness         # Calculate total fitness
+            proportions.append(fitness)
+        
+        sumP = 0
+        for i in range(len(proportions)):   # Calculate the ranges of each roulette's section
+            sumP += proportions[i] / totalFitness
+            proportions[i] = sumP
+
+        selection = random()
+        for i in range(len(proportions)):   # Select one position and gets the section
+            if (selection < proportions[i]):
+                genome2 = self.generation.pop(i)    # extract the section's fenotype
+                break
+
+        return genome1, genome2
 
     def best_solution(self):
         """Population best fenotype.
