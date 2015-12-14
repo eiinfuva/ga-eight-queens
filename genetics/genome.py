@@ -1,3 +1,17 @@
+#!/usr/bin/env python
+# coding=utf-8
+
+r"""Genome GA module.
+
+Genome representation for possible solution to the N-queens problem. The problem solved by this implementation\
+is the N-Queens problem. Each fenotypes represent a permutation of N-Queens at different positions.
+
+Authors:
+    Sergio García.
+    Daniel Gonzalez.
+    Ismael Taboada.
+"""
+
 from random import randint
 
 class Genome:
@@ -39,7 +53,7 @@ class Genome:
                 return True
         return False
 
-    def crossover(self, genome2):
+    def crossOver(self, genome2):
         """ One point crossover between this and genome2.
 
             Arguments:
@@ -56,3 +70,11 @@ class Genome:
         index = randint(0, self.numberN - 1)
         newValue = randint(0, self.numberN - 1)
         self.chromosome[index] = newValue
+
+    def __str__(self):
+        """ Returns string representation of instance.
+        """
+        matrix = [['-' for _ in range(self.numberN)] for _ in range(self.numberN)]
+        for index, alelle in enumerate(self.chromosome):
+            matrix[alelle-1][index] = 'Q'
+        return '\n'.join([' '.join(row) for row in matrix])
