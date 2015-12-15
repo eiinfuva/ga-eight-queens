@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding=utf-8
 
-r"""Population GA module.
+"""Population GA module.
 
 Population of fenotypes at a genetic algorithm. The problem solved by this implementation\
 is the N-Queens problem. Each fenotypes represent a permutation of N-Queens at different positions.

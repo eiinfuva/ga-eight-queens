@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding=utf-8
 
-r"""Genome GA module.
+"""Genome GA module.
 
 Genome representation for possible solution to the N-queens problem. The problem solved by this implementation\
 is the N-Queens problem. Each fenotypes represent a permutation of N-Queens at different positions.
