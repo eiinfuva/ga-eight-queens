@@ -8,11 +8,12 @@ from random import randint
 
 def main():
     N = 8 # Size of chessboard
-    n = 50 # Size of population
+    n = 16 # Size of population
     max_gen = 100 # Maximum number of generations
     debug = True # Show debug flags
 
-    population = Population(N, n)
+    # population = Population(N, n, elitism=True, elite_len=5, p_c=0.7, p_m=0.2)
+    population = Population(N, n, p_c=0.7, p_m=0.05)
     population.evolve(max_gen, DEBUG=debug)
     best = population.best_solution()
     print """

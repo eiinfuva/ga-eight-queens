@@ -75,6 +75,7 @@ class Genome:
         """ Returns string representation of instance.
         """
         matrix = [['-' for _ in range(self.numberN)] for _ in range(self.numberN)]
-        for index, alelle in enumerate(self.chromosome):
-            matrix[alelle-1][index] = 'Q'
+        for index, allele in enumerate(self.chromosome):
+            matrix[allele-1][index] = 'Q'
         return '\n'.join([' '.join(row) for row in matrix])
+
