@@ -13,6 +13,7 @@ Authors:
 """
 
 from random import randint
+from copy import deepcopy
 
 class Genome:
     """ Possible solution to the N-queens problem.
@@ -59,10 +60,12 @@ class Genome:
             Arguments:
                 genome2 (Genome): the other genome with we want to cross.
         """
+        genA = deepcopy(self)
+        genB = deepcopy(genome2)
         crossPoint = randint(0, self.numberN - 1)
-        genome2.chromosome[crossPoint:], self.chromosome[crossPoint:] = \
-            self.chromosome[crossPoint:], genome2.chromosome[crossPoint:]
-        return (self, genome2)
+        genB.chromosome[crossPoint:], genA.chromosome[crossPoint:] = \
+            genA.chromosome[crossPoint:], genB.chromosome[crossPoint:]
+        return (genA, genB)
 
     def mutate(self):
         """ Mutates a chromosome random position (or allele).

@@ -70,9 +70,9 @@ class Population:
         """
         population = []
         while len(population) < n_population:
-            rand_chromosome = [randint(1, N_chessboard) for _ in range(N_chessboard)]
+            rand_chromosome = [randint(0, N_chessboard-1) for _ in range(N_chessboard)]
             while rand_chromosome in population:
-                rand_chromosome = [randint(1, N_chessboard) for _ in range(N_chessboard)]
+                rand_chromosome = [randint(0, N_chessboard-1) for _ in range(N_chessboard)]
             population.append(Genome(rand_chromosome))
         return population
 
